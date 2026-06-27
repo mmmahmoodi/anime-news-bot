@@ -48,18 +48,18 @@ def format_message(items):
     if not items:
         return None
     now = datetime.now(timezone(timedelta(hours=3, minutes=30)))
-    header = f"🎌 اخبار انیمه | {now.strftime('%Y/%m/%d')}\n\n"
+    header = "اخبار انیمه | " + now.strftime('%Y/%m/%d') + "\n\n"
     body = ""
     for item in items:
         fa_title = translate(item["title"])
         time.sleep(1)
-        body += f"🔸 {fa_title}\n"
-        body += f"🔗 {item['link']}\n\n"
-    footer = "#انیمه #اخبار_انیمه #anime"
+        body += "- " + fa_title + "\n"
+        body += item["link"] + "\n\n"
+    footer = "#anime #animenews"
     return header + body + footer
 
 def send_to_telegram(text):
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    url = "https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage"
     payload = {
         "chat_id": CHANNEL_ID,
         "text": text,
@@ -71,7 +71,7 @@ def send_to_telegram(text):
 def main():
     print("Fetching news...")
     items = get_recent_news(hours=12)
-    print(f"Found {len(items)} items")
+    print("Found items:", len(items))
     message = format_message(items)
     if message:
         send_to_telegram(message)
@@ -81,4 +81,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-�
