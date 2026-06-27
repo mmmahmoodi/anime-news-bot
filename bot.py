@@ -1,4 +1,4 @@
-    import feedparser
+import feedparser
 import requests
 import os
 from datetime import datetime, timezone, timedelta
@@ -47,17 +47,14 @@ def get_recent_news(hours=12):
 def format_message(items):
     if not items:
         return None
-
     now = datetime.now(timezone(timedelta(hours=3, minutes=30)))
     header = f"🎌 اخبار انیمه | {now.strftime('%Y/%m/%d')}\n\n"
-
     body = ""
     for item in items:
         fa_title = translate(item["title"])
         time.sleep(1)
         body += f"🔸 {fa_title}\n"
         body += f"🔗 {item['link']}\n\n"
-
     footer = "#انیمه #اخبار_انیمه #anime"
     return header + body + footer
 
