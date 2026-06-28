@@ -1,5 +1,6 @@
 name: Anime News Bot
 
+
 on:
   schedule:
     - cron: '*/10 * * * *'
