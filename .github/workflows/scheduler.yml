@@ -1,6 +1,5 @@
 name: Anime News Bot
 
-
 on:
   schedule:
     - cron: '*/10 * * * *'
@@ -30,3 +29,4 @@ jobs:
 
       - name: Save sent list
         run: git config user.name "github-actions" && git config user.email "actions@github.com" && git add sent.txt && git diff --staged --quiet || git commit -m "update sent" && git push
+
